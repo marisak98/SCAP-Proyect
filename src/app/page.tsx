@@ -1,12 +1,7 @@
-import DemoPage from "./payments/pages";
+import { redirect } from "next/navigation";
 
 export default function HomePage() {
 
-  return(
-   
-  <div>HomePage
-       <DemoPage/>
-    </div>
-  );
+  return redirect('/dashboard');
 
 }

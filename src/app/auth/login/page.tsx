@@ -2,9 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import Image from "next/image";
-import { FcGoogle } from "react-icons/fc"
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form";
@@ -28,7 +26,6 @@ const formSchema = z.object({
   }),
 })
 
-export const dynamic = "force-dynamic";
 
 export default function LoginPage() {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -49,10 +46,10 @@ export default function LoginPage() {
           <div className="relative hidden md:block">
             <Image
               className="object-cover"
-  src="/logoLogin.png"  // Remove "../../public" and start with a leading slash "/"
-  alt="bg-image"
-  width={600}  // Set the width of the image
-  height={600} // Set the height of the image
+              src="/logo.png"  // Remove "../../public" and start with a leading slash "/"
+              alt="bg-image"
+              width={600}  // Set the width of the image
+              height={600} // Set the height of the image
             />
           </div>
         </div>

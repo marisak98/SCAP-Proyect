@@ -23,6 +23,11 @@ export default function Navbar(){
             <MdSearch/>
             <Input  placeholder="Search..."/>
         </div>
+        <div className={style.icons}>
+          <MdNotifications size={20} />
+          <MdOutlineChat size={20} />
+          <MdPublic size={20} />
+        </div>
       </div>
     </div>
   );

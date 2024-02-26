@@ -46,7 +46,7 @@ export default function LoginPage() {
           <div className="relative hidden md:block">
             <Image
               className="object-cover"
-              src="/logo.png"  // Remove "../../public" and start with a leading slash "/"
+              src="/logoLogin.png"  // Remove "../../public" and start with a leading slash "/"
               alt="bg-image"
               width={600}  // Set the width of the image
               height={600} // Set the height of the image

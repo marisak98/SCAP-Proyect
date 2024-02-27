@@ -18,21 +18,35 @@ import {
 } from "@/components/ui/form";
 
 const formSchema = z.object({
+  username: z.string().min(2, {
+    message: "Username  must be least 2 characteres."
+  }),
   email: z.string().regex(new  RegExp('^((?![.])[A-Z0-9_+-]+(?:\\.[A-Z0-9_+-]+)*@[A-Z0-9-]+(?:\\.[A-Z0-9-]+)*(?:\\.[A-Z]{2,}))$', 'i'), {
     message: "Email is not valid."
   }),
   password: z.string().min(8, {
     message: " Password must be least 8 characteres.",
   }),
-})
+  confirmPassword: z.string().min(4),
+}).superRefine(({ confirmPassword, password }, ctx) => {
+  if(confirmPassword !== password) {
+    ctx.addIssue({
+      code: "custom",
+      message: "The passwords did not match",
+      path: ["confirmPassword"],
+    });
+  }
+});
 
 
 export default function LoginPage() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      username: "",
       email: "",
       password: "",
+      confirmPassword: "",
     },
   });
 
@@ -55,12 +69,27 @@ export default function LoginPage() {
         </div>
         {/*Parte Izquierda*/}
         <div className="bg-[#16202a] text-white flex items-center justify-center flex-col">
-       
           <div className="my-4">
-          <h1 className="text-3xl font-semibold ">Login</h1>
+          <h1 className="text-3xl font-semibold ">Register</h1>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                 <FormField
+                <FormField
+                  control={form.control}
+                  name="username"
+                  render={({ field }) =>(
+                    <FormItem>
+                      <FormLabel className="text-slate-500 mb-2 block text-sm">Username</FormLabel>
+                      <FormControl>
+                        <Input placeholder="example123" {...field} />
+                      </FormControl>
+                      <FormDescription>
+                        Enter your public username.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+            <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
@@ -92,8 +121,23 @@ export default function LoginPage() {
             </FormItem>
           )}
         />
-
-        <Button type="submit" className="w-full mt-6 bg-indigo-600 rounded-full hover:bg-indigo-700"  >Login</Button>
+         <FormField
+          control={form.control}
+          name="confirmPassword"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-slate-500 mb-2 block text-sm">Confirm Password</FormLabel>
+              <FormControl>
+                <Input placeholder="*********" {...field} type="password" />
+              </FormControl>
+              <FormDescription>
+                Enter your confirm password.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit" className="w-full mt-6 bg-indigo-600 rounded-full hover:bg-indigo-700"  >Sign Up</Button>
                
             </form>
           </Form>
@@ -107,3 +151,4 @@ export default function LoginPage() {
     </main>
   );
 }
+

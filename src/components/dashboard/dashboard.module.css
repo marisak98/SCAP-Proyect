@@ -1,7 +1,7 @@
 .container {
   display: flex;
   --textSoft: #b7bac1;
-
+  height: 100vh;
 }
 
 .menu {
@@ -11,7 +11,7 @@
   --bgSoft: #182237;
   --text: #fff;
   --textSoft: #b7bac1;
-  padding: 20px;
+  padding:20px;
 }
 
 .content {

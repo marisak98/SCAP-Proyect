@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Link from "next/link";
 import Image from "next/image";
 
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -93,7 +94,9 @@ export default function LoginPage() {
           )}
         />
 
-        <Button type="submit" className="w-full mt-6 bg-indigo-600 rounded-full hover:bg-indigo-700"  >Login</Button>
+        <Button asChild type="submit" className="w-full mt-6 bg-indigo-600 rounded-full hover:bg-indigo-700"  >
+                        <Link href="/dashboard">Login</Link>
+                </Button>
                
             </form>
           </Form>

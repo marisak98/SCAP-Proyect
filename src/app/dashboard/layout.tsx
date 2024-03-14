@@ -8,7 +8,7 @@ type LayaoutProps = {children?: ReactNode};
 
 export default function Layaout({ children}: LayaoutProps){
    return(
-    <main className="bg-[#151c2c] h-screen">
+    <div className="bg-[#151c2c] h-screen">
    <div className={style.container}>
       <div className={style.menu}>
         <Sidebar/>
@@ -18,6 +18,6 @@ export default function Layaout({ children}: LayaoutProps){
         {children}
       </div>
     </div>
-    </main>
+    </div>
    );
 }

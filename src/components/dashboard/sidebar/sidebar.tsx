@@ -1,8 +1,13 @@
+'use client'
 import { FaFileContract } from "react-icons/fa6";
 import { FaHandHoldingWater } from "react-icons/fa";
 import {  BsCashCoin } from "react-icons/bs";
 import { FaPeopleLine } from "react-icons/fa6";
 import { LuFileSpreadsheet } from "react-icons/lu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import Profile from "@/app/dashboard/account/profile/page";
+import Link from "next/link";
+
 import style from "./sidebar.module.css"
 import {
   MdDashboard,
@@ -10,8 +15,23 @@ import {
   MdOutlineSettings,
   MdHelpCenter,
 } from "react-icons/md"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import MenuLink from "./menuLink/menuLink";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 const menuItems = [
   {
@@ -75,13 +95,40 @@ export default function Sidebar() {
   return(
     <div className={style.container}>
       <div className={style.user}>
-        <Image 
-          className={style.userImage}
-          src="/userIcon.png"
-          alt=""
-          width= "50"
-          height="50"
-        />
+       <DropdownMenu> 
+          <DropdownMenuTrigger asChild>
+        <Button variant="ghost"> 
+          <Avatar>
+            <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+        </Button>
+        </DropdownMenuTrigger>
+           <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem>
+                <Link href="/dashboard/account/profile">Profile</Link>
+            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/dashboard/account/settings">Settings</Link>
+            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            Keyboard shortcuts
+            <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+     <DropdownMenuSeparator/> 
+        <DropdownMenuItem>
+          Log out
+          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+      </DropdownMenu>
+
         <div className={style.userDetail}>
           <span className={style.username}>Jhon Joe</span>
           <span className={style.userTitle}>Administrator</span>
